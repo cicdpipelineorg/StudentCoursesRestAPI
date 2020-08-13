@@ -28,8 +28,8 @@ node('kubernetes')
 {
     stage('deploying to kubernetes')
 {
-    git 'https://github.com/cicdpipelineorg/StudentCoursesRestAPI.git'
-    sh 'envsubst < deploy.yaml | kubectl apply -f -' 
+    git 'https://github.com/sujith140/kubernetes.git'
+    sh 'envsubst < python.yaml | kubectl apply -f -' 
 }
 
 }
