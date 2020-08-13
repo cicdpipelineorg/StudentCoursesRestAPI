@@ -25,7 +25,7 @@ sh "docker rmi $registry"
 }
 stage('deploying to kubernetes')
 {
-    sh script: 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -' label: 'kubernetes'
+    sh label: 'kubernetes', script: 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -' 
 }
 
 }
