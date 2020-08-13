@@ -23,10 +23,13 @@ stage('cleaning up')
 {
 sh "docker rmi $registry"
 }
-stage('deploying to kubernetes')
+}
+node('kubernetes')
 {
-    sh label: 'kubernetes', script: 'git clone https://github.com/cicdpipelineorg/StudentCoursesRestAPI.git && cd StudentCoursesRestAPI'
-    sh label: 'kubernetes', script: 'envsubst < deploy.yaml | kubectl apply -f -' 
+    stage('deploying to kubernetes')
+{
+    git 'https://github.com/cicdpipelineorg/StudentCoursesRestAPI.git'
+    sh 'envsubst < deploy.yaml | kubectl apply -f -' 
 }
 
 }
